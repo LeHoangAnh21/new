@@ -86,7 +86,7 @@
 									<h3 class="tour-name">New York</h3>
 									<p class="tour-time">Fri 27 Nov 2016</p>
 									<p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-									<a href="#" class="buy-tickets s-full-width">Buy Tickets</a>
+									<button class="buy-tickets s-full-width js-buy-ticket">Buy Tickets</button>
 									
 								</div>
 							</div>
@@ -96,7 +96,7 @@
 									<h3 class="tour-name">Paris</h3>
 									<p class="tour-time">Sat 28 Nov 2016</p>
 									<p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-									<a href="#" class="buy-tickets s-full-width">Buy Tickets</a>
+									<button class="buy-tickets s-full-width js-buy-ticket">Buy Tickets</button>
 								</div>
 							</div>
 							<div class="tour-local">
@@ -105,7 +105,7 @@
 									<h3 class="tour-name">San Francisco</h3>
 									<p class="tour-time">Sun 29 Nov 2016</p>
 									<p class="desc">Praesent tincidunt sed tellus ut rutrum sed vitae justo.</p>
-									<a href="#" class="buy-tickets s-full-width">Buy Tickets</a>
+									<button class="buy-tickets s-full-width js-buy-ticket">Buy Tickets</button>
 								</div>
 							</div>
 							<div class="clear"></div>
@@ -163,6 +163,35 @@
 			</div>
 		</div>
 
+		<div class="modal js-modal">
+			<div class="modal_container js-modal_container">
+				<div class="modal_close js-modal-close">
+					<i class="ti-close"></i>
+				</div>
+				<div class="modal_header">
+					<i class="ti-bag"></i>
+					<span>Tickets</span>
+				</div>
+				<div class="modal_body">
+					<label for="quantity" class="modal_label">
+						<i class="ti-shopping-cart"></i>
+						Tickets, $15 per person
+					</label>
+					<input id="quantity" type="text" class="modal_input" placeholder="How many?">
+
+					<label for="email" class="modal_label">
+						<i class="ti-user"></i>
+						Send To
+					</label>
+					<input id="email" type="email" class="modal_input" placeholder="Enter email...">
+
+					<button id="modal_pay">
+						PAY <i class="ti-check"></i>
+					</button>
+				</div>
+			</div>
+		</div>
+
 		<script>
 			var header = document.getElementById('header');
 			var mobileMenu = document.getElementById('mobile-menu');
@@ -190,6 +219,33 @@
 					}
 				}
 			}
+		</script>
+
+		<script>
+			const buyBtns = document.querySelectorAll('.js-buy-ticket');
+			const modal = document.querySelector('.js-modal');
+			const modalContainer = document.querySelector('.js-modal_container');
+			const closeBtn = document.querySelector('.js-modal-close');
+
+			function showBuyTicket() {
+				modal.classList.add('open');
+			}
+
+			function closeBuyTicket() {
+				modal.classList.remove('open');
+			}
+
+			for(const buyBtn of buyBtns){
+				buyBtn.addEventListener('click', showBuyTicket);
+			}
+
+			closeBtn.addEventListener('click', closeBuyTicket);
+
+			modal.addEventListener('click', closeBuyTicket);
+
+			modalContainer.addEventListener('click', function (event) {
+				event.stopPropagation()
+			})
 		</script>
 	</body>
 </html>
